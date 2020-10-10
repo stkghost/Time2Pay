@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, ImageBackground, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, ImageBackground, Image, KeyboardAvoidingView} from 'react-native';
 
 // import FormRow from '../util/FormRow.js';
 
@@ -30,63 +30,66 @@ export default class MainScreen extends Component<Props> {
                 let s = this.state
                 s.resultado = resultado
                 this.setState(s)
+
             }
     render() {
         return (
-            <ImageBackground 
-                source={require('../image/25100.jpg')}
-                style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
+                {/* <ImageBackground 
+                    source={require('../image/25100.jpg')}
+                    style={styles.container}> */}
 
-                
-                <View style={styles.formContainer}>
-
-                    <Image
-                        style={styles.money}
-                        source={require('../image/time-is-money.png')}
-                    />
                     
-                    <Text style={styles.textLogo}>Time to Pay $$$</Text>
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Renda mensal'
-                    placeholderTextColor={'#9E9E9E'}
-                    keyboardType={"numeric"}
-                    onChangeText={(rendaMensal)=> {this.setState({rendaMensal})}}S
-                    /> 
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Dias por semana'
-                    placeholderTextColor={'#9E9E9E'}
-                    keyboardType={"numeric"}
-                    onChangeText={(diasPorSemana)=> {this.setState({diasPorSemana})}}
-                    /> 
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Horas por dia'
-                    placeholderTextColor={'#9E9E9E'}
-                    keyboardType={"numeric"}
-                    onChangeText={(horasDias)=> {this.setState({horasDias})}}
-                    /> 
-                    <TextInput
-                    style={styles.input}
-                    placeholder='Preço produto'
-                    placeholderTextColor={'#9E9E9E'}
-                    keyboardType={"numeric"}
-                    onChangeText={(valorProduto)=> {this.setState({valorProduto})}}
-                    /> 
-                    <TouchableOpacity 
-                        style={styles.button}
-                        // ()=>{this.calcular}
-                        onPress={this.calcular}>
-                            <Text style={styles.buttonTxt}>
-                                CALCULAR 
-                            </Text>
-                    </TouchableOpacity>
-                    <Text style={styles.textRes}>
-                        De acordo com sua renda levará {this.state.resultado} horas de trabalho para pagar este produto
-                    </Text>
-                </View>
-            </ImageBackground>
+                    <View style={styles.formContainer}>
+                        <Image
+                            style={styles.money}
+                            source={require('../image/Time_To_Pay.png')}
+                        />
+                        <Text style={styles.textRes}>
+                            Calcule quantas horas serão necessárias para pagar um produto de acordo com sua renda mensal
+                        </Text>
+                        <TextInput
+                        style={styles.input}
+                        placeholder='Renda mensal'
+                        placeholderTextColor={'#4e8db4'}
+                        keyboardType={"numeric"}
+                        onChangeText={(rendaMensal)=> {this.setState({rendaMensal})}}S
+                        /> 
+                        <TextInput
+                        style={styles.input}
+                        placeholder='Dias por semana'
+                        placeholderTextColor={'#4e8db4'}
+                        keyboardType={"numeric"}
+                        onChangeText={(diasPorSemana)=> {this.setState({diasPorSemana})}}
+                        /> 
+                        <TextInput
+                        style={styles.input}
+                        placeholder='Horas por dia'
+                        placeholderTextColor={'#4e8db4'}
+                        keyboardType={"numeric"}
+                        onChangeText={(horasDias)=> {this.setState({horasDias})}}
+                        /> 
+                        <TextInput
+                        style={styles.input}
+                        placeholder='Preço produto'
+                        placeholderTextColor={'#4e8db4'}
+                        keyboardType={"numeric"}
+                        onChangeText={(valorProduto)=> {this.setState({valorProduto})}}
+                        /> 
+                        <TouchableOpacity 
+                            style={styles.button}
+                            // ()=>{this.calcular}
+                            onPress={this.calcular}>
+                                <Text style={styles.buttonTxt}>
+                                    CALCULAR 
+                                </Text>
+                        </TouchableOpacity>
+                        <Text style={styles.textRes}>
+                            Serão necessário {this.state.resultado} horas de trabalho para pagar este produto
+                        </Text>
+                        
+                    </View>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'black'
     },
     formContainer: {
         height: 710,
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 15,
         borderWidth: 1,
-        borderColor: '#AED581'        
+        borderColor: '#29ABE3'        
     },
     textLogo: {
         color: '#212121',
@@ -116,41 +118,39 @@ const styles = StyleSheet.create({
     input: {
         color: 'black',
         fontSize: 14,
-        backgroundColor: '#F1F8E9',
-        width: WIDTH - 75,
+        backgroundColor: '#6fddff',
+        width: WIDTH - 105,
         height: 40,
         borderRadius: 9, 
         margin: 15,
         paddingLeft: 10,
-        borderColor: '#AED581',
+        borderColor: '#6fddff',
         borderWidth: 0.4
     },
     textRes: {
         fontSize: 18,
         textAlign: 'center',
-        paddingTop: 20,
-        margin: 5
+
+        color: '#007cb1',
+        fontWeight: 'bold'
     },
     money: {
-        width: 60,
-        height: 60,
-        marginBottom: 10
+        width: 150,
+        height: 150,
     },
     button: {
         justifyContent: 'center',
         alignItems: 'center',
         color: 'black',
         fontSize: 14,
-        backgroundColor: '#Ab89',
-        width: WIDTH - 75,
+        backgroundColor: '#007cb1',
+        width: WIDTH - 200,
         height: 40,
         borderRadius: 9, 
         margin: 15,
-        paddingLeft: 10,
-        borderColor: '#AED581',
-        borderWidth: 0.4
     },
     buttonTxt: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#00182d'
     }
 });
